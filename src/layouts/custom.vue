@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <AppHeader />
-    <main class="p-4 flex-1">
+    <main>
       <slot />
     </main>
     <AppFooter />
@@ -18,10 +18,6 @@ import AppFooter from "../components/footer/index.vue"
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-.layout > * {
-  width: 100%; 
 }
 
 main {
