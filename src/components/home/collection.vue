@@ -39,7 +39,6 @@
       </div>
     </div>
 
-    <!-- Tugma faqat qo‘shimcha kartalar bo‘lsa chiqadi -->
     <button v-if="visibleCards.length < cards.length" class="add-btn" @click="loadMore">
       View All Products
     </button>
@@ -150,7 +149,7 @@ const cards = [
 
 ]
 
-const visibleCount = ref(4) // dastlab 4 ta card
+const visibleCount = ref(4) 
 
 const visibleCards = computed(() => cards.slice(0, visibleCount.value))
 
