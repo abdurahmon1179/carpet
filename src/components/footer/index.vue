@@ -38,15 +38,16 @@
                <div class="footer-email">
                   <p>Stay Connected</p>
                   <span>Get design tips and exclusive offers</span>
-                  <form>
-                     <input type="text" placeholder="Your email">
+                  <form action="https://formspree.io/f/xpwqlbvl" method="POST">
+                     <input type="email" name="email" placeholder="Your email" required>
+                     <button type="submit">Subscribe</button>
                   </form>
-                  <button>Subscribe</button>
                </div>
             </div>
          </div>
          <hr>
-         <p style="color: #99A1AF; margin-top: 33px; font-size: 14px; font-weight: 400; text-align: center;">© 2024 CarpetCraft. All rights reserved. | Privacy Policy | Terms of Service</p>
+         <p style="color: #99A1AF; margin-top: 33px; font-size: 14px; font-weight: 400; text-align: center;">© 2024
+            CarpetCraft. All rights reserved. | Privacy Policy | Terms of Service</p>
       </Container>
    </footer>
 </template>
@@ -94,7 +95,7 @@ footer {
    cursor: pointer;
 }
 
-.footer-links > ul > li:hover{
+.footer-links>ul>li:hover {
    opacity: 0.5;
 }
 
@@ -121,7 +122,7 @@ footer {
    width: 100%;
 }
 
-.footer-email>button {
+.footer-email>form>button {
    background-color: #973C00;
    border-radius: 8px;
    box-shadow: 0px 1px 2px 0 #0000000D;
@@ -129,10 +130,9 @@ footer {
    border: none;
    width: 100%;
    margin-top: 8px;
-   width: 350px;
 }
 
-.footer-email > button:hover{
+.footer-email>button:hover {
    opacity: 0.8;
    color: white;
 }
@@ -142,7 +142,7 @@ footer {
    gap: 48px;
 }
 
-hr{
+hr {
    margin-top: 32px;
    background-color: #1E2939;
    height: 2px;

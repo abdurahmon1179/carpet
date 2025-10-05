@@ -6,9 +6,9 @@
                     Latest Collections</h3>
                 <p>Be the first to know about new arrivals, exclusive offers, and design inspiration
                     delivered to your inbox.</p>
-                <form>
-                    <input type="text" placeholder="Enter your email adress">
-                    <button>Subscribe</button>
+                <form action="https://formspree.io/f/xpwqlbvl" method="POST">
+                    <input type="email" name="email" required placeholder="Enter your email adress">
+                    <button type="submit">Subscribe</button>
                 </form>
                 <span>We respect your privacy. Unsubscribe at any time.</span>
             </div>
