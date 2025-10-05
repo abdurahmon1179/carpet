@@ -51,7 +51,7 @@ import Container from "../../layouts/container.vue"
 
 const cards = [
   {
-    imageSrc: "../../../public/images/card.svg",
+    imageSrc: "/images/card.svg",
     discount: "-19%",
     category: "Traditional",
     title: "Persian Heritage Rug",
@@ -59,7 +59,7 @@ const cards = [
     price: { current: 1299, old: 1599 },
   },
   {
-    imageSrc: "../../../public/images/card.svg",
+    imageSrc: "/images/card.svg",
     discount: "-19%",
     category: "Traditional",
     title: "Persian Heritage Rug",
@@ -67,7 +67,7 @@ const cards = [
     price: { current: 1299, old: 1599 },
   },
   {
-    imageSrc: "../../../public/images/card.svg",
+    imageSrc: "/images/card.svg",
     discount: "-19%",
     category: "Traditional",
     title: "Persian Heritage Rug",
@@ -75,7 +75,7 @@ const cards = [
     price: { current: 1299, old: 1599 },
   },
   {
-    imageSrc: "../../../public/images/card.svg",
+    imageSrc: "/images/card.svg",
     discount: "-19%",
     category: "Traditional",
     title: "Persian Heritage Rug",
@@ -83,7 +83,7 @@ const cards = [
     price: { current: 1299, old: 1599 },
   },
   {
-    imageSrc: "../../../public/images/card.svg",
+    imageSrc: "/images/card.svg",
     discount: "-19%",
     category: "Traditional",
     title: "Persian Heritage Rug",
@@ -91,7 +91,7 @@ const cards = [
     price: { current: 1299, old: 1599 },
   },
   {
-    imageSrc: "../../../public/images/card.svg",
+    imageSrc: "/images/card.svg",
     discount: "-19%",
     category: "Traditional",
     title: "Persian Heritage Rug",
@@ -99,7 +99,7 @@ const cards = [
     price: { current: 1299, old: 1599 },
   },
   {
-    imageSrc: "../../../public/images/card.svg",
+    imageSrc: "/images/card.svg",
     discount: "-19%",
     category: "Traditional",
     title: "Persian Heritage Rug",
@@ -107,7 +107,7 @@ const cards = [
     price: { current: 1299, old: 1599 },
   },
   {
-    imageSrc: "../../../public/images/card.svg",
+    imageSrc: "/images/card.svg",
     discount: "-19%",
     category: "Traditional",
     title: "Persian Heritage Rug",
@@ -115,7 +115,7 @@ const cards = [
     price: { current: 1299, old: 1599 },
   },
    {
-    imageSrc: "../../../public/images/card.svg",
+    imageSrc: "/images/card.svg",
     discount: "-19%",
     category: "Traditional",
     title: "Persian Heritage Rug",
@@ -123,7 +123,7 @@ const cards = [
     price: { current: 1299, old: 1599 },
   },
    {
-    imageSrc: "../../../public/images/card.svg",
+    imageSrc: "/images/card.svg",
     discount: "-19%",
     category: "Traditional",
     title: "Persian Heritage Rug",
@@ -131,7 +131,7 @@ const cards = [
     price: { current: 1299, old: 1599 },
   },
   {
-    imageSrc: "../../../public/images/card.svg",
+    imageSrc: "/images/card.svg",
     discount: "-19%",
     category: "Traditional",
     title: "Persian Heritage Rug",
@@ -139,14 +139,45 @@ const cards = [
     price: { current: 1299, old: 1599 },
   },
   {
-    imageSrc: "../../../public/images/card.svg",
+    imageSrc: "/images/card.svg",
     discount: "-19%",
     category: "Traditional",
     title: "Persian Heritage Rug",
     rating: { score: 4.8, reviews: 124 },
     price: { current: 1299, old: 1599 },
   },
-
+{
+    imageSrc: "/images/card.svg",
+    discount: "-19%",
+    category: "Traditional",
+    title: "Persian Heritage Rug",
+    rating: { score: 4.8, reviews: 124 },
+    price: { current: 1299, old: 1599 },
+  },
+  {
+    imageSrc: "/images/card.svg",
+    discount: "-19%",
+    category: "Traditional",
+    title: "Persian Heritage Rug",
+    rating: { score: 4.8, reviews: 124 },
+    price: { current: 1299, old: 1599 },
+  },
+  {
+    imageSrc: "/images/card.svg",
+    discount: "-19%",
+    category: "Traditional",
+    title: "Persian Heritage Rug",
+    rating: { score: 4.8, reviews: 124 },
+    price: { current: 1299, old: 1599 },
+  },
+  {
+    imageSrc: "/images/card.svg",
+    discount: "-19%",
+    category: "Traditional",
+    title: "Persian Heritage Rug",
+    rating: { score: 4.8, reviews: 124 },
+    price: { current: 1299, old: 1599 },
+  },
 ]
 
 const visibleCount = ref(4) 
@@ -154,7 +185,7 @@ const visibleCount = ref(4)
 const visibleCards = computed(() => cards.slice(0, visibleCount.value))
 
 function loadMore() {
-  visibleCount.value += 5
+  visibleCount.value += 4
 }
 </script>
 
@@ -180,14 +211,13 @@ function loadMore() {
         text-align: center;
         margin-bottom: 52px;
     }
-    .card-wrapper{
-        display: flex;
-        align-items: center;
-        gap: 24px;
-        justify-content: space-between;
-        margin-bottom: 24px;
-        flex-wrap: wrap;
-    }
+    .card-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
     .card{
         border: 1px solid #E5E5E5;
         padding: 25px 0 41px 0;
