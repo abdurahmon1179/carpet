@@ -20,9 +20,9 @@
 
 
                 <div class="search flex items-center">
-                    <Input type="text" placeholder="Search carpets, rugs, categories..."
+                    <Input type="text" placeholder="Search carpets, rugs, categories..." icon="pi pi-search"
+  iconPosition="left"
                          />
-                    <img src="/images/lupa.svg" alt="" class="w-5 h-5 ml-2" />
                 </div>
 
 

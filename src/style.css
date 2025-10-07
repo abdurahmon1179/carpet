@@ -9,3 +9,13 @@ img{
 body{
   font-family: Geist;
 }
+body {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.p-button, .p-inputtext {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #ccc !important;
+}

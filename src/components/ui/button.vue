@@ -13,11 +13,11 @@
 defineProps({
   variant: {
     type: String,
-    default: 'primary', // 'primary' yoki 'outline'
+    default: 'primary', 
   },
   size: {
     type: String,
-    default: 'large', // 'large' yoki 'small'
+    default: 'large', 
   },
   disabled: {
     type: Boolean,
