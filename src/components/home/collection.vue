@@ -32,10 +32,10 @@
             <span>${{ card.price.old }}</span>
           </div>
 
-          <button>
+          <BaseButton class="btn-extra">
             <img src="/images/whitecart.svg" alt="" />
             <p>Add to Cart</p>
-          </button>
+          </BaseButton>
         </div>
       </div>
     </div>
@@ -78,6 +78,7 @@
 <script setup>
 import { ref, computed } from "vue"
 import Container from "../../layouts/container.vue"
+import BaseButton from '../ui/button.vue'
 
 const cards = Array.from({ length: 16 }, () => ({
   imageSrc: "/images/card.svg",
@@ -227,17 +228,8 @@ function loadMore() {
   text-decoration: line-through;
 }
 
-.card-body>button {
-  background-color: #973C00;
+.btn-extra{
   margin-top: 18px;
-  padding: 10px 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  border-radius: 8px;
-  color: white;
 }
 
 .add-btn {

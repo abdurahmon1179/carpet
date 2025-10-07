@@ -7,8 +7,8 @@
                 <p>Be the first to know about new arrivals, exclusive offers, and design inspiration
                     delivered to your inbox.</p>
                 <form action="https://formspree.io/f/xpwqlbvl" method="POST">
-                    <input type="email" name="email" required placeholder="Enter your email adress">
-                    <button type="submit">Subscribe</button>
+                    <Input type="email" name="email" variant="small" required placeholder="Enter your email adress"/>
+                    <BaseButton size="small" type="submit">Subscribe</BaseButton>
                 </form>
                 <span>We respect your privacy. Unsubscribe at any time.</span>
             </div>
@@ -54,19 +54,6 @@
     margin-top: 27px;
     margin-bottom: 16px;
 }
-.email-card > form > input{
-    width: 337px;
-    padding: 9.5px 13px;
-    border-radius: 8px;
-    outline: none;
-    border: 1px solid #E5E5E5;
-}
-.email-card > form > button{
-    padding: 10px 16px;
-    background-color: #973C00;
-    border-radius: 8px;
-    color: white;
-}
 .email-card > span{
     color: #737373;
     font-size: 12px;
@@ -78,4 +65,6 @@
 
 <script setup>
 import Container from "../../layouts/container.vue"
+import BaseButton from "../ui/button.vue"
+import Input from "../ui/input.vue"
 </script>

@@ -39,8 +39,8 @@
                   <p>Stay Connected</p>
                   <span>Get design tips and exclusive offers</span>
                   <form action="https://formspree.io/f/xpwqlbvl" method="POST">
-                     <input type="email" name="email" placeholder="Your email" required>
-                     <button type="submit">Subscribe</button>
+                     <Input variant="dark" type="email" name="email" placeholder="Your email" required/>
+                     <BaseButton  type="submit">Subscribe</BaseButton>
                   </form>
                </div>
             </div>
@@ -113,16 +113,7 @@ footer {
    font-weight: 400;
 }
 
-.footer-email>form>input {
-   margin-top: 16px;
-   border: 1px solid #364153;
-   border-radius: 8px;
-   background-color: #1E2939;
-   padding: 9.5px 13px;
-   outline: none;
-   box-shadow: 0px 1px 2px 0px #0000000D;
-   width: 100%;
-}
+
 
 .footer-email>form>button {
    background-color: #973C00;
@@ -154,4 +145,6 @@ hr {
 
 <script setup>
 import Container from "../../layouts/container.vue"
+import Input from "../ui/input.vue"
+import BaseButton from "../ui/button.vue"
 </script>

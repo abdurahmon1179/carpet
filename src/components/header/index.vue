@@ -20,8 +20,8 @@
 
 
                 <div class="search flex items-center">
-                    <input type="text" placeholder="Search carpets, rugs, categories..."
-                        class="border p-2 rounded-l-md" />
+                    <Input type="text" placeholder="Search carpets, rugs, categories..."
+                         />
                     <img src="/images/lupa.svg" alt="" class="w-5 h-5 ml-2" />
                 </div>
 
@@ -92,14 +92,7 @@
     left: 5px;
 }
 
-.search>input {
-    border: 1px solid #E5E5E5;
-    width: 440px;
-    height: 36px;
-    border-radius: 8px;
-    outline: none;
-    padding-left: 38px;
-}
+
 
 .wishlist {
     gap: 28px;
@@ -158,6 +151,7 @@ import { useToast } from "primevue/usetoast";
 import Button from "primevue/button";
 import Menu from "primevue/menu";
 import Toast from "primevue/toast";
+import Input from "../ui/input.vue"
 
 const toast = useToast();
 

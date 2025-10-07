@@ -8,13 +8,13 @@
                         modern carpets, and timeless designs that transform
                         any space into a masterpiece.</p>
                     <div class="button-group">
-                        <button class="first-btn">
+                        <BaseButton class="first-btn">
                             <p>Shop Collection</p>
                             <img src="../../../public/images/strelka.svg" alt="">
-                        </button>
-                        <button class="second-btn">
+                        </BaseButton>
+                        <BaseButton  variant="outline" size="small">
                             View Catalog
-                        </button>
+                        </BaseButton>
                     </div>
                 </div>
                 <div class="image">
@@ -53,22 +53,9 @@
     gap: 16px;
 }
 .first-btn{
-    background-color: #973C00;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 12px 16px;
-    border-radius: 8px;
-    color: white;
-    font-weight: 500;
-    font-size: 14px;
+   width: 170px !important;
 }
-.second-btn{
-    padding: 12px 25px;
-    background-color: transparent;
-    border: 1px solid #973C00;
-    border-radius: 8px;
-}
+
 .image > img{
     width: 700px;
     height: 700px;
@@ -78,4 +65,5 @@
 
 <script setup>
 import Container from "../../layouts/container.vue";
+import BaseButton from '../ui/button.vue'
 </script>
