@@ -1,10 +1,11 @@
+
 <template>
   <Container>
     <div class="title">
       <h2>Featured Collection</h2>
       <p>
         Handpicked carpets that showcase exceptional craftsmanship and
-        timeless design
+        timeless design~
       </p>
     </div>
 
@@ -40,12 +41,37 @@
     </div>
 
     <div class="btn-wrapper">
-      <button v-if="!loading && visibleCards.length < cards.length" class="add-btn" @click="loadMore">
-        View All Products
-      </button>
+      <button
+        class="add-btn"
+        :disabled="loading || allLoaded"
+        @click="loadMore"
+      >
+        <template v-if="loading">
+          <span class="spinner"></span>
+          Loading...
+        </template>
 
-      <div v-else-if="loading" class="loader"></div>
+        <template v-else-if="allLoaded">
+          All Products Loaded
+        </template>
+
+        <template v-else>
+          View All Products
+        </template>
+      </button>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
   </Container>
 </template>
 
@@ -64,14 +90,20 @@ const cards = Array.from({ length: 16 }, () => ({
 
 const visibleCount = ref(4)
 const loading = ref(false)
+const allLoaded = ref(false)
 
 const visibleCards = computed(() => cards.slice(0, visibleCount.value))
 
 function loadMore() {
+  if (allLoaded.value) return
+
   loading.value = true
   setTimeout(() => {
     visibleCount.value += 4
     loading.value = false
+    if (visibleCount.value >= cards.length) {
+      allLoaded.value = true
+    }
   }, 1000)
 }
 </script>
@@ -209,15 +241,17 @@ function loadMore() {
 }
 
 .add-btn {
+  background-color: #fff;
+  color: #000;
   border: 1px solid #E5E5E5;
-  padding: 12px 25px;
+  padding: 12px 28px;
   border-radius: 8px;
-  color: #0A0A0A;
-  font-weight: 500;
-  font-size: 14px;
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 76px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .btn-wrapper {
@@ -226,13 +260,18 @@ function loadMore() {
   margin-top: 24px;
 }
 
+.add-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
 
-.loader {
-  width: 32px;
-  height: 32px;
-  border: 3px solid #ccc;
-  border-top: 3px solid #973C00;
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #000;
+  border-top-color: transparent;
   border-radius: 50%;
+  display: inline-block;
   animation: spin 1s linear infinite;
 }
 

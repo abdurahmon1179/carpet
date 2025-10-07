@@ -49,6 +49,8 @@
          <p style="color: #99A1AF; margin-top: 33px; font-size: 14px; font-weight: 400; text-align: center;">© 2024
             CarpetCraft. All rights reserved. | Privacy Policy | Terms of Service</p>
       </Container>
+
+
    </footer>
 </template>
 
