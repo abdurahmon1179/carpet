@@ -71,6 +71,7 @@ defineProps({
 .small {
   padding: 10px 16px;
   width: auto;
+  height: 36px;
 }
 
 .is-disabled {

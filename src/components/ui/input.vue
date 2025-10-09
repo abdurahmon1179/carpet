@@ -1,9 +1,8 @@
 <template>
   <div class="base-input-wrapper" :class="iconPosition">
-    <!-- Agar icon bo‘lsa, uni joylashtiramiz -->
+
     <i v-if="icon" :class="['input-icon', icon]"></i>
 
-    <!-- PrimeVue InputText -->
     <InputText
       :type="type"
       :placeholder="placeholder"
@@ -33,20 +32,20 @@ defineProps({
   },
   variant: {
     type: String,
-    default: 'large', // 'large', 'small', 'dark'
+    default: 'large',
   },
   icon: {
     type: String,
-    default: '', // masalan: 'pi pi-search'
+    default: '', 
   },
   iconPosition: {
     type: String,
-    default: 'left', // 'left' yoki 'right'
+    default: 'left', 
   },
 });
 </script>
 
-<style scoped>
+<style>
 .base-input-wrapper {
   position: relative;
   display: flex;
@@ -65,7 +64,7 @@ defineProps({
   box-shadow: none !important;
 }
 
-/* variantlar */
+
 .base-input.large {
   width: 440px !important;
   height: 36px !important;
@@ -75,6 +74,7 @@ defineProps({
 .base-input.small {
   width: 337px !important;
   padding: 9.5px 13px !important;
+  height: 36px;
 }
 
 .base-input.dark {
@@ -87,7 +87,9 @@ defineProps({
   width: 352px !important;
 }
 
-/* Icon uchun umumiy uslub */
+
+
+
 .input-icon {
   position: absolute;
   font-size: 16px;
@@ -96,17 +98,16 @@ defineProps({
   transform: translateY(-50%);
 }
 
-/* Chapdagi icon */
+
 .base-input-wrapper.left .input-icon {
   left: 12px;
 }
 
-/* O‘ngdagi icon */
 .base-input-wrapper.right .input-icon {
   right: 12px;
 }
 
-/* disabled holat */
+
 .base-input:disabled {
   background-color: #f5f5f5 !important;
   cursor: not-allowed !important;

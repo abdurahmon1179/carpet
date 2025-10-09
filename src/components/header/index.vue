@@ -21,8 +21,7 @@
 
                 <div class="search flex items-center">
                     <Input type="text" placeholder="Search carpets, rugs, categories..." icon="pi pi-search"
-  iconPosition="left"
-                         />
+                        iconPosition="left" />
                 </div>
 
 
@@ -152,6 +151,9 @@ import Button from "primevue/button";
 import Menu from "primevue/menu";
 import Toast from "primevue/toast";
 import Input from "../ui/input.vue"
+
+
+
 
 const toast = useToast();
 
