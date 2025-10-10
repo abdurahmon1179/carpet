@@ -53,7 +53,7 @@ defineProps({
   width: fit-content;
 }
 
-/* umumiy input uslubi */
+
 .base-input {
   border: 1px solid #E5E5E5 !important;
   border-radius: 8px !important;
@@ -111,5 +111,26 @@ defineProps({
 .base-input:disabled {
   background-color: #f5f5f5 !important;
   cursor: not-allowed !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .p-inputtext, 
+  .base-input {
+    background-color: white !important;
+    color: #000000 !important;
+    border: 1px solid #E5E5E5 !important;
+  }
+
+  .p-inputtext:focus, 
+  .base-input:focus {
+    background-color: white !important;
+    color: #000000 !important;
+    border-color: #a3a3a3 !important;
+    box-shadow: none !important;
+  }
+
+  .p-inputtext::placeholder {
+    color: #666 !important;
+  }
 }
 </style>
