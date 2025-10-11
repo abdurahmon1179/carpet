@@ -39,6 +39,7 @@ defineProps({
   gap: 16px;
   border: none;
   outline: none; 
+  height: 40px;
 }
 
 
@@ -71,7 +72,7 @@ defineProps({
 .small {
   padding: 10px 16px;
   width: auto;
-  height: 36px;
+  height: 40px;
 }
 
 .is-disabled {
