@@ -1,49 +1,58 @@
 <template>
   <div class="base-input-wrapper" :class="iconPosition">
-
-    <i v-if="icon" :class="['input-icon', icon]"></i>
+    <i
+      v-if="type === 'password'"
+      :class="['input-icon', showPassword ? 'pi pi-eye-slash' : 'pi pi-eye']"
+      @click="togglePassword"
+    ></i>
 
     <InputText
-      :type="type"
+      :type="showPassword ? 'text' : type"
       :placeholder="placeholder"
       :disabled="disabled"
       class="base-input"
       :class="variant"
+      v-model="localValue"
     />
   </div>
 </template>
 
 <script setup>
-import InputText from 'primevue/inputtext';
+import { ref, watch } from 'vue'
+import InputText from 'primevue/inputtext'
 
-defineProps({
+const props = defineProps({
   modelValue: String,
   type: {
     type: String,
     default: 'text',
   },
-  placeholder: {
-    type: String,
-    default: '',
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  variant: {
-    type: String,
-    default: 'large',
-  },
-  icon: {
-    type: String,
-    default: '', 
-  },
+  placeholder: String,
+  disabled: Boolean,  
+  variant: String,
   iconPosition: {
     type: String,
-    default: 'left', 
+    default: 'right',
   },
-});
+})
+
+const emit = defineEmits(['update:modelValue'])
+const showPassword = ref(false)
+const localValue = ref(props.modelValue)
+
+watch(localValue, (val) => emit('update:modelValue', val))
+watch(
+  () => props.modelValue,
+  (val) => {
+    if (val !== localValue.value) localValue.value = val
+  }
+)
+
+const togglePassword = () => {
+  showPassword.value = !showPassword.value
+}
 </script>
+
 
 <style>
 .base-input-wrapper {
@@ -51,6 +60,7 @@ defineProps({
   display: flex;
   align-items: center;
   width: fit-content;
+  width: 100%;
 }
 
 
@@ -75,6 +85,11 @@ defineProps({
   width: 337px !important;
   padding: 9.5px 13px !important;
   height: 36px;
+}
+
+.base-input.auth {
+  padding: 9.5px 13px;
+  width: 100% !important;
 }
 
 .base-input.dark {

@@ -20,7 +20,7 @@
 
 
                 <div class="search flex items-center">
-                    <Input type="text" placeholder="Search carpets, rugs, categories..." icon="pi pi-search"
+                    <Input type="text" variant="small" placeholder="Search carpets, rugs, categories..." icon="pi pi-search"
                         iconPosition="left" />
                 </div>
 
@@ -43,7 +43,6 @@
             </div>
 
             <hr />
-
 
             <div class="nav-bar-menu">
                 <ul class="flex gap-6">
@@ -145,38 +144,34 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router"; 
 import Container from "../../layouts/container.vue";
 import { useToast } from "primevue/usetoast";
 import Button from "primevue/button";
 import Menu from "primevue/menu";
 import Toast from "primevue/toast";
-import Input from "../ui/input.vue"
-
-
-
+import Input from "../ui/input.vue";
 
 const toast = useToast();
+const router = useRouter(); 
 
 const menuRef = ref(null);
 
 const openMenu = (event) => {
-    if (menuRef.value && menuRef.value.toggle) {
-        menuRef.value.toggle(event);
-    }
+  if (menuRef.value && menuRef.value.toggle) {
+    menuRef.value.toggle(event);
+  }
 };
 
 const items = [
-    {
-        label: "Profile",
-
+  { label: "Profile" },
+  { label: "Settings" },
+  { separator: true },
+  {
+    label: "Sign In",
+    command: () => {
+      router.push("/auth"); 
     },
-    {
-        label: "Settings",
-
-    },
-    { separator: true },
-    {
-        label: "Logout",
-    },
+  },
 ];
 </script>

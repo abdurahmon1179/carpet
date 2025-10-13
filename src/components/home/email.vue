@@ -30,6 +30,9 @@
     margin: 0 auto;
     background-color: white;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .email-card > h3{
     color: #0A0A0A;
@@ -51,6 +54,7 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
+    width: 448px;
     margin-top: 27px;
     margin-bottom: 16px;
 }
