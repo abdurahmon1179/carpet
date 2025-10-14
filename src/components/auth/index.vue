@@ -3,18 +3,29 @@
         <div class="wrapper-form">
             <h3>Welcome Back</h3>
             <p>Sign in to your CarpetCraft account</p>
-            <form action="">
-                <label for="">Email</label>
-                <Input class="form-input" variant="auth" type="text" placeholder="john@example.com" />
-                <label for="">Password</label>
-                <Input class="form-input" variant="auth" type="password" placeholder="Enter your password" />
-                <span>forgot password?</span>
-                <BaseButton style="margin-top: 16px; margin-bottom: 18px;">Sign In</BaseButton>
+
+            <form @submit.prevent="handleSubmit">
+                <label>Email</label>
+                <Input v-model="email" class="form-input" variant="auth" type="text" placeholder="john@example.com" />
+                <span v-if="errors.email" class="error-text">{{ errors.email }}</span>
+
+                <label>Password</label>
+                <Input v-model="password" class="form-input" variant="auth" type="password"
+                    placeholder="Enter your password" />
+                <span v-if="errors.password" class="error-text">{{ errors.password }}</span>
+
+                <span>Forgot password?</span>
+
+                <BaseButton style="margin-top: 16px; margin-bottom: 18px;" type="submit">
+                    Sign In
+                </BaseButton>
             </form>
+
             <div class="sign-up">
                 <p>Don't have an account?</p>
                 <span>Sign up</span>
             </div>
+
             <div class="example">
                 <h3>Demo Credentials:</h3>
                 <p>Admin: admin@carpetcraft.com / password</p>
@@ -23,6 +34,57 @@
         </div>
     </Container>
 </template>
+
+<script setup>
+import { ref } from "vue"
+import { z } from "zod"
+import Container from "../../layouts/container.vue"
+import Input from "../ui/input.vue"
+import BaseButton from "../ui/button.vue"
+
+
+const email = ref("")
+const password = ref("")
+
+const schema = z.object({
+    email: z.string().email("Please enter a valid email address"),
+    password: z
+        .string()
+        .min(6, "Password must be at least 6 characters long"),
+})
+
+
+const errors = ref({
+    email: "",
+    password: "",
+})
+
+function handleSubmit() {
+    errors.value.email = ""
+    errors.value.password = ""
+
+    const result = schema.safeParse({
+        email: email.value,
+        password: password.value,
+    })
+
+    console.log("Zod result:", result)
+
+    if (!result.success) {
+        console.log("Validation issues:", result.error.issues)
+        result.error.issues.forEach((err) => {
+            const field = err.path[0]
+            errors.value[field] = err.message
+        })
+    } else {
+        console.log("✅ Form submitted:", result.data)
+        alert("Successfully signed in!")
+    }
+}
+
+
+
+</script>
 
 <style scoped>
 .wrapper-form {
@@ -106,10 +168,12 @@ form>span {
     font-size: 14px;
     font-weight: 400;
 }
-</style>
 
-<script setup>
-import Container from "../../layouts/container.vue"
-import Input from "../ui/input.vue"
-import BaseButton from "../ui/button.vue"
-</script>
+.error-text {
+    color: red;
+    font-size: 13px;
+    margin-top: -8px;
+    margin-bottom: 10px;
+    display: block;
+}
+</style>
