@@ -143,19 +143,22 @@
 </style>
 
 <script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router"; 
+import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
 import Container from "../../layouts/container.vue";
 import { useToast } from "primevue/usetoast";
 import Button from "primevue/button";
 import Menu from "primevue/menu";
 import Toast from "primevue/toast";
 import Input from "../ui/input.vue";
+import { useAuthStore } from "../../store/auth";
 
 const toast = useToast();
-const router = useRouter(); 
-
+const router = useRouter();
 const menuRef = ref(null);
+const authStore = useAuthStore();
+
+const isLoggedIn = computed(() => !!authStore.user);
 
 const openMenu = (event) => {
   if (menuRef.value && menuRef.value.toggle) {
@@ -163,15 +166,44 @@ const openMenu = (event) => {
   }
 };
 
-const items = [
-  { label: "Profile" },
-  { label: "Settings" },
-  { separator: true },
-  {
-    label: "Sign In",
-    command: () => {
-      router.push("/auth"); 
-    },
-  },
-];
+const items = computed(() => {
+  if (isLoggedIn.value) {
+    return [
+      { label: authStore.user.username, disabled: true },
+      { separator: true },
+      {
+        label: "Profile",
+        command: () => router.push("/profile"),
+      },
+      { label: "Settings" },
+      { separator: true },
+      {
+        label: "Logout",
+        command: () => {
+          authStore.user = null;
+          authStore.token = null;
+          localStorage.removeItem("auth");
+          toast.add({
+            severity: "success",
+            summary: "Logged out",
+            life: 2000,
+          });
+          router.push("/");
+        },
+      },
+    ];
+  } else {
+    return [
+      {
+        label: "Sign In",
+        command: () => router.push("/signin"),
+      },
+      {
+        label: "Sign Up",
+        command: () => router.push("/signup"),
+      },
+    ];
+  }
+});
 </script>
+

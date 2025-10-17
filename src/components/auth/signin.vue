@@ -23,7 +23,7 @@
 
             <div class="sign-up">
                 <p>Don't have an account?</p>
-                <span>Sign up</span>
+                <span @click="$router.push('/signup')">Sign up</span>
             </div>
 
             <div class="example">
