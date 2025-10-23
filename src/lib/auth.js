@@ -1,4 +1,3 @@
-// src/lib/auth.js
 import { Client, Account } from "appwrite";
 import { useAuthStore } from "../store/auth";
 
