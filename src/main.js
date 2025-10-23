@@ -1,24 +1,30 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+// main.js
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
+import { createPinia } from "pinia";
 
-import { createPinia } from 'pinia' 
-import PrimeVue from 'primevue/config'
-import ToastService from 'primevue/toastservice'
+// 🔥 PrimeVue va uning style fayllari
+import PrimeVue from "primevue/config";
+import ToastService from "primevue/toastservice";
+import "primevue/resources/themes/saga-blue/theme.css";   // 🎨 Tema
+import "primevue/resources/primevue.min.css";             // ⚙️ Asosiy CSS
+import "primeicons/primeicons.css";                       // 🔣 Iconlar
+
+// 🔥 Appwrite bilan ishlash
+import { initAuthListener } from "./lib/auth";
+
+initAuthListener(); // bu auth listenerni ishga tushiradi
 
 
-import 'primevue/resources/themes/saga-blue/theme.css'
-import 'primevue/resources/primevue.min.css'
-import 'primeicons/primeicons.css'
+const app = createApp(App);
+const pinia = createPinia();
 
-const app = createApp(App)
+app.use(router);
+app.use(pinia);
+app.use(PrimeVue);
+app.use(ToastService);
 
 
-const pinia = createPinia()
-app.use(pinia)
 
-app.use(router)
-app.use(PrimeVue)
-app.use(ToastService)
-
-app.mount('#app')
+app.mount("#app");

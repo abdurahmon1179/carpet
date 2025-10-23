@@ -57,13 +57,17 @@ import { z } from "zod";
 import Container from "../../layouts/container.vue";
 import Input from "../ui/input.vue";
 import BaseButton from "../ui/button.vue";
-import { useAuthStore } from "../../store/auth.js";
+import { account } from "../../lib/auth";
 import { useToast } from "primevue/usetoast";
 import Toast from "primevue/toast";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "../../store/auth";
 
 const toast = useToast();
+const router = useRouter();
 const authStore = useAuthStore();
 
+// Form data
 const firstName = ref("");
 const lastName = ref("");
 const middleName = ref("");
@@ -73,6 +77,7 @@ const phone = ref("");
 const userType = ref("");
 const password = ref("");
 
+// Validation schema
 const schema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters"),
   lastName: z.string().min(2, "Last name must be at least 2 characters"),
@@ -114,30 +119,55 @@ async function handleSubmit() {
       const field = err.path[0];
       errors.value[field] = err.message;
     });
-  } else {
-    const success = await authStore.signUp(result.data);
+    return;
+  }
 
-    if (success) {
-      toast.add({
-        severity: "success",
-        summary: "Account created",
-        detail: "Your account has been successfully created!",
-        life: 3000,
-      });
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 1500);
-    } else {
-      toast.add({
-        severity: "error",
-        summary: "Sign up failed",
-        detail: authStore.error || "Something went wrong",
-        life: 3000,
-      });
-    }
+  try {
+    // 1️⃣ Foydalanuvchini yaratish
+    await account.create(
+      "unique()",
+      email.value,
+      password.value,
+      `${firstName.value} ${lastName.value}`
+    );
+
+    // 2️⃣ Login qilish
+    await account.createEmailPasswordSession(email.value, password.value);
+
+    // 3️⃣ Username va boshqa ma'lumotlarni prefs’ga saqlash
+    await account.updatePrefs({
+      username: username.value,
+      phone: phone.value,
+      userType: userType.value,
+    });
+
+    // 4️⃣ Yangilangan foydalanuvchini olish
+    await authStore.fetchUser();
+
+    toast.add({
+      severity: "success",
+      summary: "Account Created",
+      detail: "You have been signed up and logged in successfully!",
+      life: 3000,
+    });
+
+    // 5️⃣ Home sahifaga yo‘naltirish
+    setTimeout(() => {
+      router.push("/");
+    }, 1500);
+  } catch (error) {
+    toast.add({
+      severity: "error",
+      summary: "Sign Up Failed",
+      detail: error.message,
+      life: 3000,
+    });
   }
 }
+
 </script>
+
+
 
 
 <style scoped>
@@ -148,6 +178,7 @@ async function handleSubmit() {
   width: 448px;
   margin: 64px auto;
 }
+
 .wrapper-form > h3 {
   color: #0A0A0A;
   font-size: 24px;
@@ -155,6 +186,7 @@ async function handleSubmit() {
   text-align: center;
   margin-bottom: 6px;
 }
+
 .wrapper-form > p {
   color: #737373;
   font-size: 14px;
@@ -162,31 +194,37 @@ async function handleSubmit() {
   margin-bottom: 24px;
   text-align: center;
 }
+
 form > label {
   color: #0A0A0A;
   font-size: 14px;
   font-weight: 500;
 }
+
 .form-input {
   margin: 8px 0 16px 0;
 }
+
 .sign-up {
   display: flex;
   align-items: center;
   gap: 5px;
   justify-content: center;
 }
+
 .sign-up > p {
   color: #737373;
   font-size: 14px;
   font-weight: 400;
 }
+
 .sign-up > span {
   color: #973C00;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
 }
+
 .error-text {
   color: red;
   font-size: 13px;
