@@ -67,7 +67,7 @@ const toast = useToast();
 const router = useRouter();
 const authStore = useAuthStore();
 
-// Form data
+
 const firstName = ref("");
 const lastName = ref("");
 const middleName = ref("");
@@ -77,7 +77,6 @@ const phone = ref("");
 const userType = ref("");
 const password = ref("");
 
-// Validation schema
 const schema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters"),
   lastName: z.string().min(2, "Last name must be at least 2 characters"),
@@ -123,7 +122,7 @@ async function handleSubmit() {
   }
 
   try {
-    // 1️⃣ Foydalanuvchini yaratish
+    
     await account.create(
       "unique()",
       email.value,
@@ -131,17 +130,17 @@ async function handleSubmit() {
       `${firstName.value} ${lastName.value}`
     );
 
-    // 2️⃣ Login qilish
+    
     await account.createEmailPasswordSession(email.value, password.value);
 
-    // 3️⃣ Username va boshqa ma'lumotlarni prefs’ga saqlash
+    
     await account.updatePrefs({
       username: username.value,
       phone: phone.value,
       userType: userType.value,
     });
 
-    // 4️⃣ Yangilangan foydalanuvchini olish
+  
     await authStore.fetchUser();
 
     toast.add({
@@ -151,7 +150,7 @@ async function handleSubmit() {
       life: 3000,
     });
 
-    // 5️⃣ Home sahifaga yo‘naltirish
+
     setTimeout(() => {
       router.push("/");
     }, 1500);

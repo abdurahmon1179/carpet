@@ -22,20 +22,20 @@ export async function initAuthListener() {
 
 export const authService = {
   async signUp({ email, password, name, username, phone, userType }) {
-    // 1️⃣ Yangi foydalanuvchini yaratish
+
     const user = await account.create("unique()", email, password, name);
 
-    // 2️⃣ Login (session ochish)
+
     await account.createEmailPasswordSession(email, password);
 
-    // 3️⃣ Username va boshqa ma'lumotlarni saqlash
+
     await account.updatePrefs({
       username,
       phone,
       userType,
     });
 
-    // 4️⃣ Yangilangan foydalanuvchini olish
+
     const updatedUser = await account.get();
 
     const authStore = useAuthStore();

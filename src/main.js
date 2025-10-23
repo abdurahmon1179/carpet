@@ -4,17 +4,17 @@ import App from "./App.vue";
 import router from "./router";
 import { createPinia } from "pinia";
 
-// 🔥 PrimeVue va uning style fayllari
+
 import PrimeVue from "primevue/config";
 import ToastService from "primevue/toastservice";
-import "primevue/resources/themes/saga-blue/theme.css";   // 🎨 Tema
-import "primevue/resources/primevue.min.css";             // ⚙️ Asosiy CSS
-import "primeicons/primeicons.css";                       // 🔣 Iconlar
+import "primevue/resources/themes/saga-blue/theme.css";  
+import "primevue/resources/primevue.min.css";             
+import "primeicons/primeicons.css";                       
 
-// 🔥 Appwrite bilan ishlash
+
 import { initAuthListener } from "./lib/auth";
 
-initAuthListener(); // bu auth listenerni ishga tushiradi
+
 
 
 const app = createApp(App);

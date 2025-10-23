@@ -1,7 +1,7 @@
 <template>
   <Container>
     <div class="nav">
-      <!-- Top bar -->
+
       <div class="nav-bar-top flex justify-between items-center">
         <p>Free shipping on orders over $500</p>
         <div class="flex items-center gap-4">
@@ -12,7 +12,6 @@
 
       <hr />
 
-      <!-- Main bar -->
       <div class="nav-bar-main flex justify-between items-center">
         <router-link to="/" class="logo-link">
           <img src="/images/logo.svg" alt="Logo" class="logo" />
@@ -45,7 +44,6 @@
 
       <hr />
 
-      <!-- Categories bar -->
       <div class="nav-bar-menu">
         <ul class="flex gap-6">
           <li style="color: #0a0a0a">All Categories</li>
